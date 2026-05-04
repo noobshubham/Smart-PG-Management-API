@@ -11,7 +11,7 @@ from app.workers import jobs
 
 def _seed_active_resident(db, *, phone, name="Resident"):
     owner = PgOwner(
-        pg_name="PG", owner_name="O", phone_number=phone[:-1] + "0",
+        pg_name="PG", owner_name="O", phone_number=phone,
         hashed_password=hash_password("supersecret"),
     )
     db.add(owner)

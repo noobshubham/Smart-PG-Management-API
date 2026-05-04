@@ -27,8 +27,8 @@ def run_daily_meal_polls(
 
     sent = skipped = 0
     for resident in residents:
-        log = meals.send_daily_poll(resident, on_date, whatsapp)
-        if log.prompted_at is not None:
+        _, was_sent = meals.send_daily_poll(resident, on_date, whatsapp)
+        if was_sent:
             sent += 1
         else:
             skipped += 1

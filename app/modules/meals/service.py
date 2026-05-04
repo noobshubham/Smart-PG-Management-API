@@ -30,15 +30,16 @@ class MealService:
         resident: Resident,
         on_date: date,
         whatsapp: WhatsAppClient,
-    ) -> MealLog:
+    ) -> tuple[MealLog, bool]:
         """Insert a meal_log row for today and dispatch the WhatsApp poll.
 
-        Idempotent — re-running for the same (resident, date) reuses the row
-        and only re-sends if not yet prompted.
+        Returns (log, sent). `sent` is True only when a new prompt was just
+        dispatched — False when the resident was already prompted today or
+        when the WhatsApp send failed.
         """
         log = self.repo.get_or_create(resident.pg_id, resident.id, on_date)
         if log.prompted_at is not None:
-            return log
+            return log, False
 
         try:
             whatsapp.send_text(
@@ -47,10 +48,10 @@ class MealService:
             )
         except WhatsAppError:
             logger.exception("meal poll send failed resident=%s", resident.id)
-            return log
+            return log, False
 
         log.prompted_at = datetime.now(timezone.utc)
-        return self.repo.save(log)
+        return self.repo.save(log), True
 
     def try_record_response(
         self,

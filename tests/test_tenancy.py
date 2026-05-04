@@ -38,7 +38,7 @@ def test_owner_cannot_modify_another_pgs_room(client, owner_token, second_owner_
     r = client.patch(
         f"/rooms/{room_a['id']}",
         headers=headers_b,
-        json={"total_capacity": 99},
+        json={"total_capacity": 5},
     )
     assert r.status_code == 404
     assert client.delete(f"/rooms/{room_a['id']}", headers=headers_b).status_code == 404

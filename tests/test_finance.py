@@ -110,6 +110,6 @@ def test_upi_link_requires_vpa(client, auth_headers):
     assert r.status_code == 200
     body = r.json()
     assert body["upi_uri"].startswith("upi://pay?")
-    assert "pa=owner%40upi" in body["upi_uri"]
+    assert "pa=owner@upi" in body["upi_uri"]
     assert "am=10000.00" in body["upi_uri"]
     assert "cu=INR" in body["upi_uri"]
