@@ -2,7 +2,7 @@
 from dataclasses import dataclass
 
 from fastapi import Depends, HTTPException, status
-from fastapi.security import OAuth2PasswordBearer
+from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from jose import JWTError
 from sqlalchemy.orm import Session
 
@@ -11,7 +11,7 @@ from app.core.security import decode_access_token
 from app.modules.auth.models import PgOwner
 from app.modules.auth.repository import OwnerRepository
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login", auto_error=True)
+bearer_scheme = HTTPBearer(auto_error=False)
 
 
 @dataclass(frozen=True)
@@ -31,11 +31,13 @@ def _credentials_error(detail: str = "Could not validate credentials") -> HTTPEx
 
 
 def get_current_owner(
-    token: str = Depends(oauth2_scheme),
+    creds: HTTPAuthorizationCredentials | None = Depends(bearer_scheme),
     db: Session = Depends(get_db),
 ) -> PgOwner:
+    if creds is None:
+        raise _credentials_error()
     try:
-        payload = decode_access_token(token)
+        payload = decode_access_token(creds.credentials)
     except JWTError:
         raise _credentials_error()
 
