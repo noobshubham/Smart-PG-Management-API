@@ -1,5 +1,7 @@
 # Smart PG Management API
 
+![ci](https://github.com/noobshubham/Smart-PG-Management-API/actions/workflows/ci.yml/badge.svg)
+
 Multi-tenant SaaS backend for Paying Guest property owners. Built with FastAPI,
 SQLAlchemy 2.0, Pydantic v2, Celery, Gemini, and the WhatsApp Business API.
 

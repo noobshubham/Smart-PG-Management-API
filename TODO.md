@@ -34,11 +34,13 @@
 - [x] Celery app + beat schedule
 - [x] Pure job functions in `workers/jobs.py` (broker-free unit tests)
 
-### DX / ops (today)
+### DX / ops
 - [x] VS Code debug config (`.vscode/launch.json`) for uvicorn + pytest breakpoints
 - [x] Map `AIUnavailableError` → HTTP 503 globally (was leaking as 500 from dependency resolution)
 - [x] Make Gemini model configurable via `GEMINI_MODEL`; default bumped from retired `gemini-1.5-flash` to `gemini-2.5-flash`
+- [x] GitHub Actions CI — `ruff check` + `pytest` on push / PR (`.github/workflows/ci.yml`)
 
 ## Pending
 
 - [ ] Add `LICENSE.md` at project root
+- [ ] Add `Dockerfile` (multi-stage, slim base) so the API can be containerised and pushed to `ghcr.io` for deployment
