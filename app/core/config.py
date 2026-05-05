@@ -25,6 +25,7 @@ class Settings(BaseSettings):
     jwt_access_token_expire_minutes: int = 60
 
     gemini_api_key: str = ""
+    gemini_model: str = "gemini-2.5-flash"
 
     whatsapp_provider: Literal["meta", "twilio"] = "meta"
     whatsapp_api_token: str = ""

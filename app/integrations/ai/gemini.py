@@ -72,7 +72,7 @@ Rules:
 
 
 class GeminiProvider(AIProvider):
-    def __init__(self, api_key: str, model_name: str = "gemini-1.5-flash") -> None:
+    def __init__(self, api_key: str, model_name: str = "gemini-2.5-flash") -> None:
         if not api_key:
             raise AIUnavailableError("GEMINI_API_KEY not configured")
         # Lazy import so unit tests can stub without the SDK installed.

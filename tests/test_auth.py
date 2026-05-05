@@ -63,6 +63,12 @@ def test_invalid_token_rejected(client):
     assert r.status_code == 401
 
 
+def test_non_bearer_scheme_rejected(client):
+    # HTTPBearer accepts only `Bearer <token>`; Basic/Token/etc. must 401.
+    r = client.get("/me", headers={"Authorization": "Basic dXNlcjpwYXNz"})
+    assert r.status_code == 401
+
+
 def test_update_profile_sets_upi_vpa(client, auth_headers):
     r = client.patch(
         "/auth/me",

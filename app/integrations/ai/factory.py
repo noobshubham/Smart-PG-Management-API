@@ -12,4 +12,7 @@ def get_ai_provider() -> AIProvider:
     Today only Gemini is supported. Adding a provider = new impl + branch here.
     """
     settings = get_settings()
-    return GeminiProvider(api_key=settings.gemini_api_key)
+    return GeminiProvider(
+        api_key=settings.gemini_api_key,
+        model_name=settings.gemini_model,
+    )
