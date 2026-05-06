@@ -14,7 +14,7 @@ requirementDiagram
 
 requirement SRS {
   id: 1
-  text: Smart PG Management API — multi-tenant SaaS backend
+  text: "Smart PG Management API - multi-tenant SaaS backend"
   risk: medium
   verifymethod: test
 }
@@ -22,35 +22,35 @@ requirement SRS {
 %% --- Functional ---
 functionalRequirement Auth {
   id: 4.1
-  text: PG owner registration and JWT login
+  text: "PG owner registration and JWT login"
   risk: high
   verifymethod: test
 }
 
 functionalRequirement PropertyMgmt {
   id: 4.2.1
-  text: CRUD rooms with dynamic available_capacity
+  text: "CRUD rooms with dynamic available_capacity"
   risk: low
   verifymethod: test
 }
 
 functionalRequirement ResidentMgmt {
   id: 4.2.2
-  text: Onboard residents, deposits, move-in/move-out
+  text: "Onboard residents, deposits, move-in/move-out"
   risk: medium
   verifymethod: test
 }
 
 functionalRequirement Finance {
   id: 4.3
-  text: Monthly invoices, payments, UPI deep links
+  text: "Monthly invoices, payments, UPI deep links"
   risk: high
   verifymethod: test
 }
 
 functionalRequirement Notices {
   id: 4.4
-  text: Broadcast announcements via WhatsApp
+  text: "Broadcast announcements via WhatsApp"
   risk: low
   verifymethod: test
 }
@@ -58,28 +58,28 @@ functionalRequirement Notices {
 %% --- AI / Automation ---
 functionalRequirement ComplaintRouting {
   id: 5.1
-  text: AI parses WhatsApp complaints into structured JSON
+  text: "AI parses WhatsApp complaints into structured JSON"
   risk: high
   verifymethod: test
 }
 
 functionalRequirement IDOcr {
   id: 5.2
-  text: Vision AI extracts ID fields for resident onboarding
+  text: "Vision AI extracts ID fields for resident onboarding"
   risk: medium
   verifymethod: test
 }
 
 functionalRequirement MealPoll {
   id: 5.3.1
-  text: Daily meal poll, AI-parsed replies, headcount log
+  text: "Daily meal poll, AI-parsed replies, headcount log"
   risk: medium
   verifymethod: test
 }
 
 functionalRequirement RentReminders {
   id: 5.3.2
-  text: Monthly auto-reminders for pending balances
+  text: "Monthly auto-reminders for pending balances"
   risk: medium
   verifymethod: test
 }
@@ -87,35 +87,35 @@ functionalRequirement RentReminders {
 %% --- Non-functional ---
 performanceRequirement WebhookFast {
   id: 3.3
-  text: Webhook returns 200 OK before heavy work
+  text: "Webhook returns 200 OK before heavy work"
   risk: high
   verifymethod: test
 }
 
 performanceRequirement Stateless {
   id: 3.2
-  text: Stateless API to allow horizontal scaling
+  text: "Stateless API to allow horizontal scaling"
   risk: low
   verifymethod: inspection
 }
 
 interfaceRequirement MultiTenant {
   id: 3.1
-  text: Every non-owner row scoped by pg_id from JWT
+  text: "Every non-owner row scoped by pg_id from JWT"
   risk: high
   verifymethod: test
 }
 
 interfaceRequirement ProviderAgnostic {
   id: 3.4
-  text: AI and WhatsApp accessed via Protocol abstractions
+  text: "AI and WhatsApp accessed via Protocol abstractions"
   risk: low
   verifymethod: inspection
 }
 
 functionalRequirement Security {
   id: 7
-  text: bcrypt hashing, Pydantic validation, secrets via env
+  text: "bcrypt hashing, Pydantic validation, secrets via env"
   risk: high
   verifymethod: test
 }
