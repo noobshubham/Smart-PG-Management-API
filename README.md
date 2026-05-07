@@ -139,3 +139,8 @@ Every response carries an `X-Request-Id` header (taken from the inbound header
 if present, otherwise generated). The id is attached to `request.state` and
 included in 5xx error bodies, so a user-reported failure can be grepped
 directly in logs.
+
+## License
+
+Licensed under the GNU Affero General Public License v3.0 (AGPL-3.0).
+See [LICENSE](LICENSE) for the full text.
