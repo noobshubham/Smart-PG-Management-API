@@ -40,12 +40,20 @@ class Complaint(Base, TenantMixin, TimestampMixin):
     parsed_issue: Mapped[str | None] = mapped_column(Text, nullable=True)
     room_number: Mapped[str | None] = mapped_column(String(20), nullable=True)
     category: Mapped[ComplaintCategory] = mapped_column(
-        Enum(ComplaintCategory, name="complaint_category"),
+        Enum(
+            ComplaintCategory,
+            name="complaint_category",
+            values_callable=lambda e: [m.value for m in e],
+        ),
         nullable=False,
         default=ComplaintCategory.OTHER,
     )
     urgency: Mapped[ComplaintUrgency] = mapped_column(
-        Enum(ComplaintUrgency, name="complaint_urgency"),
+        Enum(
+            ComplaintUrgency,
+            name="complaint_urgency",
+            values_callable=lambda e: [m.value for m in e],
+        ),
         nullable=False,
         default=ComplaintUrgency.MEDIUM,
     )

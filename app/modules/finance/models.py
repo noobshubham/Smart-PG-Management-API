@@ -41,7 +41,11 @@ class LedgerEntry(Base, TenantMixin, TimestampMixin):
     )
     transaction_ref_id: Mapped[str | None] = mapped_column(String(64), nullable=True)
     status: Mapped[LedgerStatus] = mapped_column(
-        Enum(LedgerStatus, name="ledger_status"),
+        Enum(
+            LedgerStatus,
+            name="ledger_status",
+            values_callable=lambda e: [m.value for m in e],
+        ),
         nullable=False,
         default=LedgerStatus.PENDING,
     )
