@@ -95,6 +95,22 @@ celery -A app.workers.celery_app beat --loglevel=info
 Both read `CELERY_BROKER_URL` from `.env`. In production run them as
 separate services; in dev a single Redis instance is enough.
 
+### Docker
+
+```bash
+docker build -t smart-pg:latest .
+docker run --env-file .env -p 8000:8000 smart-pg:latest
+```
+
+The container runs `alembic upgrade head` before starting uvicorn, so migrations are applied automatically on first boot. Mount a volume if you want the SQLite file to survive container restarts:
+
+```bash
+docker run --env-file .env -p 8000:8000 -v "$PWD/data:/app/data" \
+  -e DATABASE_URL=sqlite:////app/data/smart_pg.db smart-pg:latest
+```
+
+For production use Postgres — set `DATABASE_URL` to a `postgresql+psycopg2://` connection string in your `.env`.
+
 ### Tests
 
 ```bash
