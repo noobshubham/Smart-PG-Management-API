@@ -34,6 +34,5 @@ USER appuser
 
 EXPOSE 8000
 
-# Run migrations then start the server.
-CMD alembic upgrade head && \
-    uvicorn app.main:app --host 0.0.0.0 --port 8000
+# Run migrations then exec uvicorn so SIGTERM reaches the server process.
+CMD ["/bin/sh", "-c", "alembic upgrade head && exec uvicorn app.main:app --host 0.0.0.0 --port 8000"]
