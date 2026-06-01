@@ -42,5 +42,5 @@
 
 ## Pending
 
-- [ ] Add `LICENSE.md` at project root
-- [ ] Add `Dockerfile` (multi-stage, slim base) so the API can be containerised and pushed to `ghcr.io` for deployment
+- [x] Add `LICENSE` at project root
+- [x] Add `Dockerfile` (multi-stage, slim base) so the API can be containerised and pushed to `ghcr.io` for deployment
